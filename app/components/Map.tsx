@@ -33,6 +33,21 @@ const Map: React.FC = () => {
     setHoveredStore(null)
   }
 
+  // Fonction pour récupérer les coordonnées du clic dans le SVG
+  const handleClick = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    if (svgRef.current) {
+      const rect = svgRef.current.getBoundingClientRect()
+      // Calculer le facteur d'échelle
+      const scaleX = svgWidth / rect.width
+      const scaleY = svgHeight / rect.height
+      // Calculer les coordonnées dans le viewBox
+      const x = (event.clientX - rect.left) * scaleX
+      const y = (event.clientY - rect.top) * scaleY
+      console.log('Coordonnées cliquées :', x, y)
+      // Vous pouvez également utiliser ces coordonnées pour d'autres traitements
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center py-8">
       {/* Titre de la carte */}
@@ -54,8 +69,9 @@ const Map: React.FC = () => {
         {/* SVG superposé avec le quadrillage et les stores */}
         <svg
           ref={svgRef}
+          onClick={handleClick}
           viewBox={`0 0 ${svgWidth} ${svgHeight}`}
-          className="absolute top-0 left-0 w-full h-full"
+          className="absolute top-0 left-0"
         >
           {/* Quadrillage vertical */}
           {Array.from({ length: Math.floor(svgWidth / gridSpacing) + 1 }).map(
