@@ -1,28 +1,33 @@
-import { Dialog, Transition, TransitionChild } from '@headlessui/react';
-import React, { Fragment, useState } from 'react';
+import { Dialog, Transition, TransitionChild } from '@headlessui/react'
+import React, { Fragment, useState } from 'react'
 
 interface ModernModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  title: string;
-  children: React.ReactNode;
+  isOpen: boolean
+  onClose: () => void
+  title: string
+  children: React.ReactNode
 }
 
-const Modal: React.FC<ModernModalProps> = ({ isOpen, onClose, title, children }) => {
-  const [internalOpen, setInternalOpen] = useState(isOpen);
+const Modal: React.FC<ModernModalProps> = ({
+  isOpen,
+  onClose,
+  title,
+  children,
+}) => {
+  const [internalOpen, setInternalOpen] = useState(isOpen)
 
   // Synchronise l'état interne avec isOpen
   React.useEffect(() => {
     if (isOpen) {
-      setInternalOpen(true);
+      setInternalOpen(true)
     }
-  }, [isOpen]);
+  }, [isOpen])
 
   const handleClose = () => {
     // Laisser l'animation se terminer avant de fermer complètement la modal
-    setInternalOpen(false);
-    setTimeout(onClose, 200); // 200ms doit correspondre à la durée de votre animation de sortie
-  };
+    setInternalOpen(false)
+    setTimeout(onClose, 200) // 200ms doit correspondre à la durée de votre animation de sortie
+  }
 
   return (
     <Transition appear show={internalOpen} as={Fragment}>
@@ -42,13 +47,13 @@ const Modal: React.FC<ModernModalProps> = ({ isOpen, onClose, title, children })
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div
-              className="fixed inset-0 bg-black/30"
-              onClick={handleClose}
-            />
+            <div className="fixed inset-0 bg-black/30" onClick={handleClose} />
           </TransitionChild>
 
-          <span className="inline-block h-screen align-middle" aria-hidden="true">
+          <span
+            className="inline-block h-screen align-middle"
+            aria-hidden="true"
+          >
             &#8203;
           </span>
 
@@ -62,7 +67,10 @@ const Modal: React.FC<ModernModalProps> = ({ isOpen, onClose, title, children })
             leaveTo="opacity-0 scale-95"
           >
             <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-              <h3 id="dialog-title" className="text-lg font-medium leading-6 text-gray-900">
+              <h3
+                id="dialog-title"
+                className="text-lg font-medium leading-6 text-gray-900"
+              >
                 {title}
               </h3>
               <div className="mt-2">{children}</div>
@@ -80,7 +88,7 @@ const Modal: React.FC<ModernModalProps> = ({ isOpen, onClose, title, children })
         </div>
       </Dialog>
     </Transition>
-  );
-};
+  )
+}
 
-export default Modal;
+export default Modal
