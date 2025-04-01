@@ -4,19 +4,7 @@ import Image from 'next/image'
 import ModernModal from './Modal'
 import StorePolygon from './StorePolygon'
 import { Store, stores } from '@/app/components/stores'
-
-// Calcule le centre (moyenne des coordonnées) d'un polygone
-function getPolygonCenter(points: string): { x: number; y: number } {
-  const coords = points
-    .trim()
-    .split(' ')
-    .map((point) => point.split(',').map(Number))
-  const total = coords.reduce(
-    (acc, [x, y]) => ({ x: acc.x + x, y: acc.y + y }),
-    { x: 0, y: 0 }
-  )
-  return { x: total.x / coords.length, y: total.y / coords.length }
-}
+import { getPolygonCenter } from '@/utils/getPolygonCenter'
 
 const Map: React.FC = () => {
   const [selectedStore, setSelectedStore] = useState<Store | null>(null)

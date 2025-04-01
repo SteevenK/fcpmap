@@ -1,24 +1,12 @@
 import React, { MouseEvent } from 'react'
 import { Store } from '@/app/components/stores'
+import { getPolygonCenter } from '@/utils/getPolygonCenter'
 
 interface StorePolygonProps {
   store: Store
   onMouseEnter: (store: Store, event: MouseEvent<SVGPolygonElement>) => void
   onMouseLeave: () => void
   onClick: (store: Store) => void
-}
-
-// Fonction helper pour calculer le centre d'un polygone
-function getPolygonCenter(points: string): { x: number; y: number } {
-  const coords = points
-    .trim()
-    .split(' ')
-    .map((point) => point.split(',').map(Number))
-  const total = coords.reduce(
-    (acc, [x, y]) => ({ x: acc.x + x, y: acc.y + y }),
-    { x: 0, y: 0 }
-  )
-  return { x: total.x / coords.length, y: total.y / coords.length }
 }
 
 const StorePolygon: React.FC<StorePolygonProps> = ({
