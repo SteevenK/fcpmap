@@ -12,6 +12,13 @@ const Map: React.FC = () => {
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 })
   const svgRef = useRef<SVGSVGElement>(null)
 
+  // Nouvelle state pour le mode de sélection et pour stocker les points
+  const [selectionMode, setSelectionMode] = useState(false)
+  // On n'utilise pas selectedPoints, seul le setter est nécessaire pour la mise à jour
+  const [, setSelectedPoints] = useState<{ x: number; y: number }[]>([])
+  // Ref pour éviter le double log
+  const isLoggingRef = useRef(false)
+
   // Dimensions du viewBox utilisées dans le SVG
   const svgWidth = 800
   const svgHeight = 1200
@@ -35,21 +42,58 @@ const Map: React.FC = () => {
 
   // Fonction pour récupérer les coordonnées du clic dans le SVG
   const handleClick = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
-    if (svgRef.current) {
-      const rect = svgRef.current.getBoundingClientRect()
-      // Calculer le facteur d'échelle
-      const scaleX = svgWidth / rect.width
-      const scaleY = svgHeight / rect.height
-      // Calculer les coordonnées dans le viewBox
-      const x = (event.clientX - rect.left) * scaleX
-      const y = (event.clientY - rect.top) * scaleY
+    if (!svgRef.current) return
+
+    const rect = svgRef.current.getBoundingClientRect()
+    // Calculer le facteur d'échelle
+    const scaleX = svgWidth / rect.width
+    const scaleY = svgHeight / rect.height
+    // Calculer les coordonnées dans le viewBox
+    const x = (event.clientX - rect.left) * scaleX
+    const y = (event.clientY - rect.top) * scaleY
+
+    if (selectionMode) {
+      setSelectedPoints((prevPoints) => {
+        const newPoints = [...prevPoints, { x, y }]
+        if (newPoints.length === 4 && !isLoggingRef.current) {
+          isLoggingRef.current = true
+          const formatted = newPoints
+            .map((point) => `${point.x},${point.y}`)
+            .join(' ')
+          console.log(formatted)
+          // Réinitialiser immédiatement les points
+          // et réinitialiser le verrou après la mise à jour
+          setTimeout(() => {
+            isLoggingRef.current = false
+          }, 0)
+          return [] // Réinitialisation des points
+        }
+        return newPoints
+      })
+    } else {
+      // Fonctionnalité par défaut si le mode sélection n'est pas actif
       console.log('Coordonnées cliquées :', x, y)
-      // Vous pouvez également utiliser ces coordonnées pour d'autres traitements
     }
   }
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center py-8">
+      {/* Switch pour activer/désactiver le mode de sélection */}
+      <div className="mb-4">
+        <label className="flex items-center space-x-2">
+          <input
+            type="checkbox"
+            checked={selectionMode}
+            onChange={(e) => {
+              setSelectionMode(e.target.checked)
+              // Réinitialiser les points quand on active/désactive le mode
+              setSelectedPoints([])
+            }}
+          />
+          <span>Mode sélection des points (4 par 4)</span>
+        </label>
+      </div>
+
       {/* Titre de la carte */}
       <h1 className="text-2xl font-bold mb-4">
         Carte interactive de FashionCenter
