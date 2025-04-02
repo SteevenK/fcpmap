@@ -72,6 +72,6 @@ export const stores: Store[] = [
     id: 27,
     name: 'BELLAVIE',
     description: 'Description de la Boutique Bellavie',
-    points: '225,45 286,44 286,59 224,59',
+    points: '44,91 168,90 169,119 42,120',
   },
 ]

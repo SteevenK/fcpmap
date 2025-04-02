@@ -218,15 +218,16 @@ const Map: React.FC = () => {
       )}
 
       {/* Modal pour afficher les détails au clic */}
-      {selectedStore && (
-        <ModernModal
-          isOpen={true}
-          onClose={() => setSelectedStore(null)}
-          title={selectedStore.name}
-        >
-          <p>{selectedStore.description}</p>
-        </ModernModal>
-      )}
+      {/*TODO remettre la modale une fois que l'on a placé tout les magasins*/}
+      {/*{selectedStore && (*/}
+      {/*  <ModernModal*/}
+      {/*    isOpen={true}*/}
+      {/*    onClose={() => setSelectedStore(null)}*/}
+      {/*    title={selectedStore.name}*/}
+      {/*  >*/}
+      {/*    <p>{selectedStore.description}</p>*/}
+      {/*  </ModernModal>*/}
+      {/*)}*/}
     </div>
   )
 }

@@ -38,7 +38,7 @@ const StorePolygon: React.FC<StorePolygonProps> = ({
         textAnchor="middle"
         alignmentBaseline="middle"
         fill="black"
-        fontSize="6"
+        fontSize="16"
         pointerEvents="none" // Permet de laisser passer les événements sur le polygone
       >
         {store.name}
