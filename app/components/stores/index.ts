@@ -74,4 +74,28 @@ export const stores: Store[] = [
     description: 'Description de la Boutique Bellavie',
     points: '44,91 168,90 169,119 42,120',
   },
+  {
+    id: 200,
+    name: 'test',
+    description: '',
+    points: '525.5 844.34, 672.5 842.34, 669.5 863.25, 569.5 904.25, 525.5 904.25',
+  },
+  {
+    id: 201,
+    name: 'test',
+    description: '',
+    points: '524.5 814.34, 676.5 814.34, 672.5 842.34, 525.5 844.34',
+  },
+  {
+    id: 202,
+    name: 'test',
+    description: '',
+    points: '524.5 788.29, 680.5 787.29, 676.5 814.34, 524.5 814.34',
+  },
+  {
+    id: 203,
+    name: 'BELLLAVIE texte test',
+    description: '',
+    points: '523.5 758.83, 641.5 756.83, 640.5 731.83, 688.5 731.83, 680.5 787.29, 524.5 788.29',
+  },
 ]
