@@ -72,7 +72,7 @@ const Map: React.FC = () => {
       })
     } else {
       // Fonctionnalité par défaut si le mode sélection n'est pas actif
-      console.log('Coordonnées cliquées :', x, y)
+      console.log(`Coordonnées cliquées : ${x},${y}`)
     }
   }
 
