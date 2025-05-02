@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import ModernModal from './Modal'
 import StorePolygon from './StorePolygon'
@@ -12,14 +12,11 @@ const Map: React.FC = () => {
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 })
   const svgRef = useRef<SVGSVGElement>(null)
 
-  // Nouvelle state pour le mode de sélection et pour stocker les points
+  // Mode de sélection et points cliqués
   const [selectionMode, setSelectionMode] = useState(false)
-  // On n'utilise pas selectedPoints, seul le setter est nécessaire pour la mise à jour
-  const [, setSelectedPoints] = useState<{ x: number; y: number }[]>([])
-  // Ref pour éviter le double log
-  const isLoggingRef = useRef(false)
+  const [points, setPoints] = useState<{ x: number; y: number }[]>([])
 
-  // Dimensions du viewBox utilisées dans le SVG
+  // Dimensions et espacement
   const svgWidth = 800
   const svgHeight = 1200
   const gridSpacing = 5
@@ -30,9 +27,10 @@ const Map: React.FC = () => {
     if (svgRef.current) {
       const rect = svgRef.current.getBoundingClientRect()
       const scale = rect.width / svgWidth
-      const tooltipX = rect.left + center.x * scale
-      const tooltipY = rect.top + center.y * scale
-      setTooltipPos({ x: tooltipX, y: tooltipY })
+      setTooltipPos({
+        x: rect.left + center.x * scale,
+        y: rect.top + center.y * scale,
+      })
     }
   }
 
@@ -40,45 +38,34 @@ const Map: React.FC = () => {
     setHoveredStore(null)
   }
 
-  // Fonction pour récupérer les coordonnées du clic dans le SVG
   const handleClick = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     if (!svgRef.current) return
 
     const rect = svgRef.current.getBoundingClientRect()
-    // Calculer le facteur d'échelle
     const scaleX = svgWidth / rect.width
     const scaleY = svgHeight / rect.height
-    // Calculer les coordonnées dans le viewBox
     const x = (event.clientX - rect.left) * scaleX
     const y = (event.clientY - rect.top) * scaleY
 
     if (selectionMode) {
-      setSelectedPoints((prevPoints) => {
-        const newPoints = [...prevPoints, { x, y }]
-        if (newPoints.length === 4 && !isLoggingRef.current) {
-          isLoggingRef.current = true
-          const formatted = newPoints
-            .map((point) => `${point.x},${point.y}`)
-            .join(' ')
-          console.log(formatted)
-          // Réinitialiser immédiatement les points
-          // et réinitialiser le verrou après la mise à jour
-          setTimeout(() => {
-            isLoggingRef.current = false
-          }, 0)
-          return [] // Réinitialisation des points
-        }
-        return newPoints
-      })
+      setPoints((prev) => [...prev, { x, y }])
     } else {
-      // Fonctionnalité par défaut si le mode sélection n'est pas actif
       console.log(`Coordonnées cliquées : ${x},${y}`)
     }
   }
 
+  // Dès que points atteint 4, on log et on vide
+  useEffect(() => {
+    if (points.length === 4) {
+      const formatted = points.map((p) => `${p.x},${p.y}`).join(' ')
+      console.log(formatted)
+      setPoints([])
+    }
+  }, [points])
+
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center py-8">
-      {/* Switch pour activer/désactiver le mode de sélection */}
+      {/* Toggle mode sélection */}
       <div className="mb-4">
         <label className="flex items-center space-x-2">
           <input
@@ -86,22 +73,18 @@ const Map: React.FC = () => {
             checked={selectionMode}
             onChange={(e) => {
               setSelectionMode(e.target.checked)
-              // Réinitialiser les points quand on active/désactive le mode
-              setSelectedPoints([])
+              setPoints([])
             }}
           />
           <span>Mode sélection des points (4 par 4)</span>
         </label>
       </div>
 
-      {/* Titre de la carte */}
       <h1 className="text-2xl font-bold mb-4">
         Carte interactive de FashionCenter
       </h1>
 
-      {/* Conteneur relatif pour la superposition */}
       <div className="relative w-[full] max-w-[1000px]">
-        {/* Image de fond via Next Image */}
         <Image
           src="/FashionEtage1.png"
           alt="Fashion Etage 1"
@@ -110,7 +93,6 @@ const Map: React.FC = () => {
           style={{ objectFit: 'cover' }}
         />
 
-        {/* SVG superposé avec le quadrillage et les stores */}
         <svg
           ref={svgRef}
           onClick={handleClick}
@@ -121,8 +103,7 @@ const Map: React.FC = () => {
           {Array.from({ length: Math.floor(svgWidth / gridSpacing) + 1 }).map(
             (_, i) => {
               const x = i * gridSpacing
-              const strokeColor = x % 25 === 0 ? 'green' : 'lightgray'
-              const strokeWidth = x % 25 === 0 ? 0.75 : 0.25
+              const isMajor = x % 25 === 0
               return (
                 <line
                   key={`v-${x}`}
@@ -130,8 +111,8 @@ const Map: React.FC = () => {
                   y1={0}
                   x2={x}
                   y2={svgHeight}
-                  stroke={strokeColor}
-                  strokeWidth={strokeWidth}
+                  stroke={isMajor ? 'green' : 'lightgray'}
+                  strokeWidth={isMajor ? 0.75 : 0.25}
                 />
               )
             }
@@ -140,8 +121,7 @@ const Map: React.FC = () => {
           {Array.from({ length: Math.floor(svgHeight / gridSpacing) + 1 }).map(
             (_, i) => {
               const y = i * gridSpacing
-              const strokeColor = y % 25 === 0 ? 'green' : 'lightgray'
-              const strokeWidth = y % 25 === 0 ? 0.75 : 0.25
+              const isMajor = y % 25 === 0
               return (
                 <line
                   key={`h-${y}`}
@@ -149,13 +129,13 @@ const Map: React.FC = () => {
                   y1={y}
                   x2={svgWidth}
                   y2={y}
-                  stroke={strokeColor}
-                  strokeWidth={strokeWidth}
+                  stroke={isMajor ? 'green' : 'lightgray'}
+                  strokeWidth={isMajor ? 0.75 : 0.25}
                 />
               )
             }
           )}
-          {/* Affichage des graduations */}
+          {/* Graduations */}
           {Array.from({ length: Math.floor(svgWidth / gridSpacing) + 1 }).map(
             (_, i) => {
               const x = i * gridSpacing
@@ -189,7 +169,7 @@ const Map: React.FC = () => {
             }
           )}
 
-          {/* Utilisation du composant StorePolygon pour chaque store */}
+          {/* Stores */}
           {stores.map((store) => (
             <StorePolygon
               key={store.id}
@@ -202,7 +182,7 @@ const Map: React.FC = () => {
         </svg>
       </div>
 
-      {/* Tooltip affiché en position fixe */}
+      {/* Tooltip */}
       {hoveredStore && (
         <div
           className="fixed bg-gray-800 text-white text-xs px-2 py-1 rounded-sm pointer-events-none"
