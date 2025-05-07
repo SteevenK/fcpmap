@@ -3,8 +3,15 @@ import React, { useState, useRef } from 'react'
 import Image from 'next/image'
 import ModernModal from './Modal'
 import StorePolygon from './StorePolygon'
-import { StoreType, stores0to50, Stores51to100 } from '@/app/components/stores'
+import {
+  StoreType,
+  stores0to25,
+  stores26to50,
+  stores51to75,
+  stores76to100,
+} from '@/app/components/stores'
 import { getPolygonCenter } from '@/utils/getPolygonCenter'
+import { CopyableField } from '@/app/components/CopyableField'
 
 const Map: React.FC = () => {
   const [selectedStore, setSelectedStore] = useState<StoreType | null>(null)
@@ -14,7 +21,12 @@ const Map: React.FC = () => {
 
   const svgWidth = 800
   const svgHeight = 1200
-  const stores: StoreType[] = [...stores0to50, ...Stores51to100]
+  const stores: StoreType[] = [
+    ...stores0to25,
+    ...stores26to50,
+    ...stores51to75,
+    ...stores76to100,
+  ]
 
   const handleMouseEnter = (store: StoreType) => {
     setHoveredStore(store)
@@ -87,7 +99,24 @@ const Map: React.FC = () => {
           onClose={() => setSelectedStore(null)}
           title={selectedStore.name}
         >
-          <p>{selectedStore.description}</p>
+          <p>
+            <span className="font-bold">Lot</span> : {selectedStore.lot}
+          </p>
+          <p>
+            <span className="font-bold">Tél</span> : {selectedStore.tel}
+          </p>
+          <p>
+            <span className="font-bold">Fax</span> : {selectedStore.fax}
+          </p>
+          <CopyableField label={'Email'} value={selectedStore.email} />
+          <p>
+            <span className="font-bold">MicroStore</span> :{' '}
+            {selectedStore.microStore}
+          </p>
+          <p>
+            <span className="font-bold">Type</span> :{' '}
+            {selectedStore.description}
+          </p>
         </ModernModal>
       )}
     </div>

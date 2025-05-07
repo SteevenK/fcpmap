@@ -1,12 +1,11 @@
 import React, { MouseEvent } from 'react'
-import { Store } from '@/app/components/stores'
-import { getPolygonCenter } from '@/utils/getPolygonCenter'
+import { StoreType } from '@/app/components/stores'
 
 interface StorePolygonProps {
-  store: Store
-  onMouseEnter: (store: Store, event: MouseEvent<SVGPolygonElement>) => void
+  store: StoreType
+  onMouseEnter: (store: StoreType, event: MouseEvent<SVGPolygonElement>) => void
   onMouseLeave: () => void
-  onClick: (store: Store) => void
+  onClick: (store: StoreType) => void
 }
 
 const StorePolygon: React.FC<StorePolygonProps> = ({
@@ -15,13 +14,11 @@ const StorePolygon: React.FC<StorePolygonProps> = ({
   onMouseLeave,
   onClick,
 }) => {
-  const center = getPolygonCenter(store.points)
-
   return (
     <>
       <polygon
         points={store.points}
-        fill="rgba(255, 0, 0, 0.2)" // fond rouge semi-transparent
+        fill="rgba(255, 0, 0, 0.1)" // fond rouge semi-transparent
         stroke="red"
         strokeWidth={0.5}
         style={{ cursor: 'pointer' }}
@@ -31,18 +28,6 @@ const StorePolygon: React.FC<StorePolygonProps> = ({
         onMouseLeave={onMouseLeave}
         onClick={() => onClick(store)}
       />
-      {/* Texte centré dans le polygone */}
-      <text
-        x={center.x}
-        y={center.y}
-        textAnchor="middle"
-        alignmentBaseline="middle"
-        fill="black"
-        fontSize="16"
-        pointerEvents="none" // Permet de laisser passer les événements sur le polygone
-      >
-        {store.name}
-      </text>
     </>
   )
 }

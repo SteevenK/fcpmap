@@ -1,3 +1,5 @@
 export * from './StoreType'
-export * from './Stores0to50'
-export * from './Stores51to100'
+export * from './Stores0to25'
+export * from './Stores26to50'
+export * from './Stores51to75'
+export * from './Stores76to100'
