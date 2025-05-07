@@ -3,19 +3,20 @@ import React, { useState, useRef } from 'react'
 import Image from 'next/image'
 import ModernModal from './Modal'
 import StorePolygon from './StorePolygon'
-import { Store, stores } from '@/app/components/stores'
+import { StoreType, stores0to50, Stores51to100 } from '@/app/components/stores'
 import { getPolygonCenter } from '@/utils/getPolygonCenter'
 
 const Map: React.FC = () => {
-  const [selectedStore, setSelectedStore] = useState<Store | null>(null)
-  const [hoveredStore, setHoveredStore] = useState<Store | null>(null)
+  const [selectedStore, setSelectedStore] = useState<StoreType | null>(null)
+  const [hoveredStore, setHoveredStore] = useState<StoreType | null>(null)
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 })
   const svgRef = useRef<SVGSVGElement>(null)
 
   const svgWidth = 800
   const svgHeight = 1200
+  const stores: StoreType[] = [...stores0to50, ...Stores51to100]
 
-  const handleMouseEnter = (store: Store) => {
+  const handleMouseEnter = (store: StoreType) => {
     setHoveredStore(store)
     const center = getPolygonCenter(store.points)
     if (svgRef.current) {
