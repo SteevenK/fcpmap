@@ -99,24 +99,38 @@ const Map: React.FC = () => {
           onClose={() => setSelectedStore(null)}
           title={selectedStore.name}
         >
-          <p>
-            <span className="font-bold">Lot</span> : {selectedStore.lot}
-          </p>
-          <p>
-            <span className="font-bold">Tél</span> : {selectedStore.tel}
-          </p>
-          <p>
-            <span className="font-bold">Fax</span> : {selectedStore.fax}
-          </p>
-          <CopyableField label={'Email'} value={selectedStore.email} />
-          <p>
-            <span className="font-bold">MicroStore</span> :{' '}
-            {selectedStore.microStore}
-          </p>
-          <p>
-            <span className="font-bold">Type</span> :{' '}
-            {selectedStore.description}
-          </p>
+          {selectedStore.lot && (
+            <p className="py-1">
+              <span className="font-bold">Lot</span> : {selectedStore.lot}
+            </p>
+          )}
+          {selectedStore.tel && (
+            <p>
+              <CopyableField label="Tél" value={selectedStore.tel} />
+            </p>
+          )}
+          {selectedStore.fax && (
+            <p>
+              <CopyableField label="Fax" value={selectedStore.fax} />
+            </p>
+          )}
+          {selectedStore.email && (
+            <CopyableField label="Email" value={selectedStore.email} />
+          )}
+          {selectedStore.microStore && (
+            <p>
+              <CopyableField
+                label="MicroStore"
+                value={selectedStore.microStore}
+              />
+            </p>
+          )}
+          {selectedStore.description && (
+            <p className="py-1">
+              <span className="font-bold">Type</span> :{' '}
+              {selectedStore.description}
+            </p>
+          )}
         </ModernModal>
       )}
     </div>
