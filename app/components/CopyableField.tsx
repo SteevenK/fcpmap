@@ -37,7 +37,7 @@ export const CopyableField: React.FC<CopyableFieldProps> = ({
         {copied ? (
           <MdCheck className="h-4 w-4 text-green-500" />
         ) : (
-          <MdContentCopy className="h-4 w-4" />
+          <MdContentCopy className="h-4 w-4 cursor-pointer" />
         )}
         {copied && (
           <span

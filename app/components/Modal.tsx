@@ -38,6 +38,7 @@ const Modal: React.FC<ModernModalProps> = ({
         aria-labelledby="dialog-title"
       >
         <div className="min-h-screen px-4 text-center">
+          {/* Overlay */}
           <TransitionChild
             as={Fragment}
             enter="ease-out duration-300"
@@ -47,7 +48,10 @@ const Modal: React.FC<ModernModalProps> = ({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black/30" onClick={handleClose} />
+            <div
+              className="fixed inset-0 bg-black/30 z-10"
+              onClick={handleClose}
+            />
           </TransitionChild>
 
           <span
@@ -57,6 +61,7 @@ const Modal: React.FC<ModernModalProps> = ({
             &#8203;
           </span>
 
+          {/* Panel */}
           <TransitionChild
             as={Fragment}
             enter="ease-out duration-300"
@@ -66,7 +71,10 @@ const Modal: React.FC<ModernModalProps> = ({
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+            <div
+              className="relative inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform
+                     bg-white shadow-xl rounded-2xl z-20"
+            >
               <h3
                 id="dialog-title"
                 className="text-lg font-medium leading-6 text-gray-900"
@@ -77,7 +85,9 @@ const Modal: React.FC<ModernModalProps> = ({
               <div className="mt-4">
                 <button
                   type="button"
-                  className="cursor-pointer inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                  className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900
+                         bg-blue-100 border border-transparent rounded-md hover:bg-blue-200
+                         focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 cursor-pointer"
                   onClick={handleClose}
                 >
                   Fermer
