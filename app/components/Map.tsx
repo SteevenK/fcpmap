@@ -5,10 +5,11 @@ import ModernModal from './Modal'
 import StorePolygon from './StorePolygon'
 import {
   StoreType,
-  stores0to25,
-  stores26to50,
-  stores51to75,
-  stores76to100,
+  stores0to20,
+  stores21to40,
+  stores41to60,
+  stores51to80,
+  stores81to100,
 } from '@/app/components/stores'
 import { getPolygonCenter } from '@/utils/getPolygonCenter'
 import { CopyableField } from '@/app/components/CopyableField'
@@ -22,10 +23,11 @@ const Map: React.FC = () => {
   const svgWidth = 800
   const svgHeight = 1200
   const stores: StoreType[] = [
-    ...stores0to25,
-    ...stores26to50,
-    ...stores51to75,
-    ...stores76to100,
+    ...stores0to20,
+    ...stores21to40,
+    ...stores41to60,
+    ...stores51to80,
+    ...stores81to100,
   ]
 
   const handleMouseEnter = (store: StoreType) => {
