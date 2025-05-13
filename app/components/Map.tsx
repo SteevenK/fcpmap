@@ -100,35 +100,27 @@ const Map: React.FC = () => {
           title={selectedStore.name}
         >
           {selectedStore.lot && (
-            <p className="py-1">
+            <div className="py-1">
               <span className="font-bold">Lot</span> : {selectedStore.lot}
-            </p>
+            </div>
           )}
           {selectedStore.tel && (
-            <p>
-              <CopyableField label="Tél" value={selectedStore.tel} />
-            </p>
+            <CopyableField label="Tél" value={selectedStore.tel} />
           )}
           {selectedStore.fax && (
-            <p>
-              <CopyableField label="Fax" value={selectedStore.fax} />
-            </p>
+            <CopyableField label="Fax" value={selectedStore.fax} />
           )}
           {selectedStore.whatsapp && (
-            <p>
-              <CopyableField label="Whatsapp" value={selectedStore.whatsapp} />
-            </p>
+            <CopyableField label="Whatsapp" value={selectedStore.whatsapp} />
           )}
           {selectedStore.email && (
             <CopyableField label="Email" value={selectedStore.email} />
           )}
           {selectedStore.microStore && (
-            <p>
-              <CopyableField
-                label="MicroStore"
-                value={selectedStore.microStore}
-              />
-            </p>
+            <CopyableField
+              label="MicroStore"
+              value={selectedStore.microStore}
+            />
           )}
           {selectedStore.description && (
             <p className="py-1">
