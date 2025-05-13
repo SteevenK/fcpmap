@@ -114,6 +114,11 @@ const Map: React.FC = () => {
               <CopyableField label="Fax" value={selectedStore.fax} />
             </p>
           )}
+          {selectedStore.whatsapp && (
+            <p>
+              <CopyableField label="Whatsapp" value={selectedStore.whatsapp} />
+            </p>
+          )}
           {selectedStore.email && (
             <CopyableField label="Email" value={selectedStore.email} />
           )}
@@ -127,7 +132,7 @@ const Map: React.FC = () => {
           )}
           {selectedStore.description && (
             <p className="py-1">
-              <span className="font-bold">Type</span> :{' '}
+              <span className="font-bold">Description</span> :{' '}
               {selectedStore.description}
             </p>
           )}
