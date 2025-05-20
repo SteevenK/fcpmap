@@ -10,7 +10,7 @@ export const stores81to100: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '232.98,530.53 348.07,485.61 348.07,557.19 232.98,557.19',
   },
   {
@@ -22,7 +22,7 @@ export const stores81to100: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '405.61,268.63 461.75,267.23 461.75,295.30 405.61,319.16',
   },
   {
@@ -34,7 +34,7 @@ export const stores81to100: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '346.67,268.07 405.61,268.63 405.61,319.16 348.07,343.02',
   },
   {
@@ -46,7 +46,7 @@ export const stores81to100: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '231.58,327.02 346.67,327.02 348.07,343.02 232.98,390.74',
   },
   {
@@ -58,7 +58,7 @@ export const stores81to100: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '231.58,297.54 346.67,297.54 346.67,327.02 231.58,327.02',
   },
   {
@@ -70,7 +70,7 @@ export const stores81to100: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '231.58,268.07 346.67,268.07 346.67,297.54 231.58,297.54',
   },
   {
@@ -82,7 +82,7 @@ export const stores81to100: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '461.75,238.60 346.67,238.60 346.67,268.07 461.75,267.23',
   },
   {
@@ -94,7 +94,7 @@ export const stores81to100: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '230.18,238.60 346.67,238.60 346.67,268.07 231.58,268.07',
   },
   {
@@ -106,7 +106,7 @@ export const stores81to100: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points:
       '370.53,209.68 461.75,209.68 461.75,238.60 346.67,238.60 346.67,221.75 370.53,220.35',
   },
@@ -119,7 +119,7 @@ export const stores81to100: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points:
       '230.18,210.53 320.00,210.53 321.40,221.75 346.67,221.75 346.67,238.60 230.18,238.60',
   },
@@ -132,7 +132,7 @@ export const stores81to100: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '371.93,179.65 461.75,179.65 461.75,209.68 370.53,209.68',
   },
   {
@@ -144,7 +144,7 @@ export const stores81to100: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '230.18,180.49 320.00,180.49 320.00,210.53 230.18,210.53',
   },
   {
@@ -156,7 +156,7 @@ export const stores81to100: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '370.53,151.58 460.35,150.18 461.75,179.65 371.93,179.65',
   },
   {
@@ -168,7 +168,7 @@ export const stores81to100: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '228.77,151.02 318.60,150.18 320.00,180.49 230.18,180.49',
   },
 ]

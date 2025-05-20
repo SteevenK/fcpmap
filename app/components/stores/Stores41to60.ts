@@ -5,12 +5,9 @@ export const stores41to60: StoreType[] = [
     id: 41,
     name: 'EMMA ELLA',
     lot: '41',
-    tel: '',
-    whatsapp: '',
-    fax: '',
-    email: '',
-    microStore: '',
-    description: '',
+    tel: '+33143522512',
+    email: 'contact@emma-ellaparis.com',
+    description: 'Prêt-à-poter Féminin',
     points:
       '718.60,50.81 787.37,50.81 770.53,168.70 725.61,188.35 724.21,147.65 718.60,147.65',
   },
@@ -18,12 +15,12 @@ export const stores41to60: StoreType[] = [
     id: 42,
     name: 'LOVIE & CO',
     lot: '42',
-    tel: '',
-    whatsapp: '',
-    fax: '',
-    email: '',
-    microStore: '',
-    description: '',
+    tel: '+33143529898',
+    whatsapp: '+33783738897',
+    fax: '+33143523838',
+    email: 'contact@lovieandco.com',
+    website: 'https://lovieandco-pro.com/fr/',
+    description: 'Prêt-à-poter Féminin',
     points:
       '699.50,341.61 704.00,339.36 745.54,338.24 730.94,441.54 699.50,440.42',
   },
@@ -31,12 +28,10 @@ export const stores41to60: StoreType[] = [
     id: 43,
     name: 'JUS DE POM',
     lot: '43',
-    tel: '',
-    whatsapp: '',
-    fax: '',
-    email: '',
-    microStore: '',
-    description: '',
+    tel: '+33141617667',
+    whatsapp: '+33755969681',
+    email: 'jusdepom.co@gmail.com',
+    description: 'Prêt-à-poter Féminin',
     points: '638.87,366.31 699.50,341.61 699.50,440.42 638.87,441.54',
   },
   {
@@ -48,7 +43,7 @@ export const stores41to60: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '580.49,389.89 638.87,366.31 638.87,441.54 580.49,441.54',
   },
   {
@@ -60,7 +55,7 @@ export const stores41to60: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '522.11,414.60 580.49,389.89 580.49,441.54 522.11,441.54',
   },
   {
@@ -72,7 +67,7 @@ export const stores41to60: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '522.11,441.54 608.56,442.79 609.68,471.86 523.23,470.74',
   },
   {
@@ -84,7 +79,7 @@ export const stores41to60: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '523.23,470.74 609.68,471.86 609.12,499.79 523.35,499.88',
   },
   {
@@ -96,7 +91,7 @@ export const stores41to60: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '523.35,499.88 609.12,499.79 609.12,526.26 523.51,527.86',
   },
   {
@@ -108,7 +103,7 @@ export const stores41to60: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '523.51,527.86 609.12,526.26 609.12,557.33 523.51,557.33',
   },
   {
@@ -120,7 +115,7 @@ export const stores41to60: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '608.56,442.79 638.87,441.54 640.00,557.33 609.12,557.33',
   },
   {
@@ -132,7 +127,7 @@ export const stores41to60: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '638.87,441.54 669.47,441.25 669.47,557.33 640.00,557.33',
   },
   {
@@ -144,7 +139,7 @@ export const stores41to60: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '669.47,441.25 731.23,440.70 714.39,557.19 669.47,557.33',
   },
   {
@@ -156,7 +151,7 @@ export const stores41to60: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '638.87,614.17 705.12,614.73 688.50,731.83 640.50,731.83',
   },
   {
@@ -168,7 +163,7 @@ export const stores41to60: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '610.80,613.61 638.87,614.17 640.00,700.07 611.92,698.94',
   },
   {
@@ -180,7 +175,7 @@ export const stores41to60: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '520.98,612.77 610.80,613.61 610.80,643.08 522.10,643.08',
   },
   {
@@ -192,7 +187,7 @@ export const stores41to60: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '522.10,643.08 610.80,643.08 610.80,671.15 523.22,671.15',
   },
   {
@@ -204,7 +199,7 @@ export const stores41to60: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '523.22,671.15 610.80,671.15 611.92,700.35 523.22,698.10',
   },
   {
@@ -216,7 +211,7 @@ export const stores41to60: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points:
       '523.50,758.83 641.50,756.83 640.50,731.83 688.50,731.83 680.50,787.29 524.50,788.29',
   },
@@ -229,7 +224,7 @@ export const stores41to60: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '524.50,788.29 680.50,787.29 676.50,814.34 524.50,814.34',
   },
   {
@@ -241,7 +236,7 @@ export const stores41to60: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '524.50,814.34 676.50,814.34 672.50,842.34 525.50,844.34',
   },
   {
@@ -253,7 +248,7 @@ export const stores41to60: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points:
       '525.50,844.34 672.50,842.34 669.50,863.25 569.50,904.25 525.50,904.25',
   },

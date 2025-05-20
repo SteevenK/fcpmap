@@ -1,6 +1,6 @@
 import { StoreType } from '@/app/components/stores/StoreType'
 
-export const stores51to80: StoreType[] = [
+export const stores61to80: StoreType[] = [
   {
     id: 61,
     name: 'KE DIFFUSION',
@@ -10,7 +10,7 @@ export const stores51to80: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '417.5,728.5 463.5,728.5 464.5,786.5 417.5,786.5',
   },
   {
@@ -22,7 +22,7 @@ export const stores51to80: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '372.5,727.5 417.5,728.5 417.5,786.5 372.5,786.5',
   },
   {
@@ -34,7 +34,7 @@ export const stores51to80: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '280.70,728.70 325.61,729.82 325.61,787.65 280.70,787.65',
   },
   {
@@ -46,7 +46,7 @@ export const stores51to80: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '234.39,728.77 280.70,728.70 280.70,787.65 234.39,786.25',
   },
   {
@@ -58,7 +58,7 @@ export const stores51to80: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points:
       '349.5,700.5 463.5,701.5 463.5,728.5 372.5,729.5 372.5,717.5 350.5,717.5',
   },
@@ -71,7 +71,7 @@ export const stores51to80: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points:
       '234.39,700.35 349.88,700.35 350.88,718.60 327.02,717.19 325.61,729.82 234.39,728.77',
   },
@@ -84,7 +84,7 @@ export const stores51to80: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '349.5,671 464.5,671 463.5,701 349.5,700',
   },
   {
@@ -96,7 +96,7 @@ export const stores51to80: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '234.39,671.44 349.88,671.44 349.88,700.35 234.39,700.35',
   },
   {
@@ -108,7 +108,7 @@ export const stores51to80: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '349.5,640 463.5,642 463.5,672 348.5,671',
   },
   {
@@ -120,7 +120,7 @@ export const stores51to80: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '234.39,613.89 348.07,613.89 349.88,671.44 234.39,671.44',
   },
   {
@@ -132,7 +132,7 @@ export const stores51to80: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '349.5,613.5 463.5,614.5 463.5,641.5 349.5,640.5',
   },
   {
@@ -144,7 +144,7 @@ export const stores51to80: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '348.5,584.5 462.5,585.5 463.5,613.5 348.5,614.5',
   },
   {
@@ -156,7 +156,7 @@ export const stores51to80: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '232.98,586.67 348.07,586.67 348.07,613.89 234.39,613.89',
   },
   {
@@ -168,7 +168,7 @@ export const stores51to80: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '347.5,557 462.5,557 462.5,586 347.5,586',
   },
   {
@@ -180,7 +180,7 @@ export const stores51to80: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '232.98,557.19 348.07,557.19 348.07,586.67 232.98,586.67',
   },
   {
@@ -192,7 +192,7 @@ export const stores51to80: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '347.5,557 347.5,527 462.5,528 462.5,558',
   },
   {
@@ -204,7 +204,7 @@ export const stores51to80: StoreType[] = [
     fax: '',
     email: '',
     microStore: '',
-    description: '',
+    description: 'Prêt-à-poter Féminin',
     points: '346.5,485 461.5,438 462.5,528 347.5,527',
   },
 ]

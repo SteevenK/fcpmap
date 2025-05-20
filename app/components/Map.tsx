@@ -8,11 +8,12 @@ import {
   stores0to20,
   stores21to40,
   stores41to60,
-  stores51to80,
+  stores61to80,
   stores81to100,
 } from '@/app/components/stores'
 import { getPolygonCenter } from '@/utils/getPolygonCenter'
 import { CopyableField } from '@/app/components/CopyableField'
+import Link from 'next/link'
 
 const Map: React.FC = () => {
   const [selectedStore, setSelectedStore] = useState<StoreType | null>(null)
@@ -26,7 +27,7 @@ const Map: React.FC = () => {
     ...stores0to20,
     ...stores21to40,
     ...stores41to60,
-    ...stores51to80,
+    ...stores61to80,
     ...stores81to100,
   ]
 
@@ -123,6 +124,17 @@ const Map: React.FC = () => {
               label="MicroStore"
               value={selectedStore.microStore}
             />
+          )}
+          {selectedStore.website && (
+            <div className="py-1">
+              <span className="font-bold">Site web</span> :{' '}
+              <Link
+                href={selectedStore.website}
+                className="text-indigo-500 underline"
+              >
+                {selectedStore.website}
+              </Link>
+            </div>
           )}
           {selectedStore.description && (
             <p className="py-1">
