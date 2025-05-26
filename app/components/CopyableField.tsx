@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { MdContentCopy, MdCheck } from 'react-icons/md'
+import { motion, AnimatePresence } from 'framer-motion'
 
 type CopyableFieldProps = {
   label: string
@@ -17,7 +18,7 @@ export const CopyableField: React.FC<CopyableFieldProps> = ({
   const handleCopy = async () => {
     await navigator.clipboard.writeText(value)
     setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    setTimeout(() => setCopied(false), 1500)
   }
 
   return (
@@ -39,17 +40,25 @@ export const CopyableField: React.FC<CopyableFieldProps> = ({
         ) : (
           <MdContentCopy className="h-4 w-4 cursor-pointer" />
         )}
-        {copied && (
-          <span
-            className="
-              absolute -top-0 -right-15
-              bg-gray-800 text-white text-xs rounded px-2 py-0.5
-              animate-fade-in
-            "
-          >
-            Copié !
-          </span>
-        )}
+
+        {/* Animated tooltip */}
+        <AnimatePresence>
+          {copied && (
+            <motion.span
+              initial={{ opacity: 0, y: 0, scale: 0.8 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 0, scale: 0.8 }}
+              transition={{ duration: 0.2 }}
+              className="
+                absolute -top-0 -right-15
+                bg-gray-800 text-white text-xs rounded px-2 py-0.5
+                pointer-events-none
+              "
+            >
+              Copié!
+            </motion.span>
+          )}
+        </AnimatePresence>
       </button>
     </div>
   )
