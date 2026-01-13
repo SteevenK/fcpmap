@@ -15,7 +15,22 @@ import { getPolygonCenter } from '@/utils/getPolygonCenter'
 import { CopyableField } from '@/app/components/CopyableField'
 import Link from 'next/link'
 
-const Map: React.FC = () => {
+
+interface MapProps {
+  imageSrc?: string
+  stores?: StoreType[]
+}
+
+const Map: React.FC<MapProps> = ({
+  imageSrc = '/FashionEtage1.png',
+  stores = [
+    ...stores0to20,
+    ...stores21to40,
+    ...stores41to60,
+    ...stores61to80,
+    ...stores81to100,
+  ]
+}) => {
   const [selectedStore, setSelectedStore] = useState<StoreType | null>(null)
   const [hoveredStore, setHoveredStore] = useState<StoreType | null>(null)
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 })
@@ -23,13 +38,9 @@ const Map: React.FC = () => {
 
   const svgWidth = 800
   const svgHeight = 1200
-  const stores: StoreType[] = [
-    ...stores0to20,
-    ...stores21to40,
-    ...stores41to60,
-    ...stores61to80,
-    ...stores81to100,
-  ]
+
+  // stores and images are now passed via props or used as defaults
+
 
   const handleMouseEnter = (store: StoreType) => {
     setHoveredStore(store)
@@ -56,8 +67,8 @@ const Map: React.FC = () => {
 
       <div className="relative w-[full] max-w-[1000px]">
         <Image
-          src="/FashionEtage1.png"
-          alt="Fashion Etage 1"
+          src={imageSrc}
+          alt="Fashion Center Map"
           width={svgWidth}
           height={svgHeight}
           style={{ objectFit: 'cover' }}

@@ -1,6 +1,7 @@
 import { MdMap } from 'react-icons/md'
 import Link from 'next/link'
 
+
 export default function NavBar() {
   return (
     <nav className="bg-white shadow-md">
