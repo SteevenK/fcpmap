@@ -33,7 +33,7 @@ const Modal: React.FC<ModernModalProps> = ({
     <Transition appear show={internalOpen} as={Fragment}>
       <Dialog
         as="div"
-        className="fixed inset-0 z-10 overflow-y-auto"
+        className="fixed inset-0 z-50 overflow-y-auto"
         onClose={handleClose}
         aria-labelledby="dialog-title"
       >
@@ -49,7 +49,7 @@ const Modal: React.FC<ModernModalProps> = ({
             leaveTo="opacity-0"
           >
             <div
-              className="fixed inset-0 bg-black/30 z-10"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-10"
               onClick={handleClose}
             />
           </TransitionChild>
@@ -73,21 +73,21 @@ const Modal: React.FC<ModernModalProps> = ({
           >
             <div
               className="relative inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform
-                     bg-white shadow-xl rounded-2xl z-20"
+                     bg-slate-900/90 backdrop-blur-md border border-white/10 shadow-2xl rounded-2xl z-20 text-white"
             >
               <h3
                 id="dialog-title"
-                className="text-lg font-medium leading-6 text-gray-900"
+                className="text-xl font-bold leading-6 text-white mb-4"
               >
                 {title}
               </h3>
-              <div className="mt-2">{children}</div>
-              <div className="mt-4">
+              <div className="mt-2 text-gray-300 space-y-2">{children}</div>
+              <div className="mt-6 flex justify-end">
                 <button
                   type="button"
-                  className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900
-                         bg-blue-100 border border-transparent rounded-md hover:bg-blue-200
-                         focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 cursor-pointer"
+                  className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white
+                         bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors
+                         focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 cursor-pointer shadow-lg shadow-indigo-500/20"
                   onClick={handleClose}
                 >
                   Fermer
