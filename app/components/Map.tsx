@@ -14,6 +14,9 @@ import {
 import { getPolygonCenter } from '@/utils/getPolygonCenter'
 import { CopyableField } from '@/app/components/CopyableField'
 import Link from 'next/link'
+import { motion, useMotionValue, useTransform } from 'framer-motion'
+import { MdZoomIn, MdZoomOut } from 'react-icons/md'
+import FloorSwitcher from './FloorSwitcher'
 
 
 interface MapProps {
@@ -33,78 +36,85 @@ const Map: React.FC<MapProps> = ({
 }) => {
   const [selectedStore, setSelectedStore] = useState<StoreType | null>(null)
   const [hoveredStore, setHoveredStore] = useState<StoreType | null>(null)
-  const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 })
-  const svgRef = useRef<SVGSVGElement>(null)
+  const [scale, setScale] = useState(0.8)
+
+  // Ref for the SVG container
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const svgWidth = 800
   const svgHeight = 1200
 
-  // stores and images are now passed via props or used as defaults
-
-
-  const handleMouseEnter = (store: StoreType) => {
-    setHoveredStore(store)
-    const center = getPolygonCenter(store.points)
-    if (svgRef.current) {
-      const rect = svgRef.current.getBoundingClientRect()
-      const scale = rect.width / svgWidth
-      setTooltipPos({
-        x: rect.left + center.x * scale,
-        y: rect.top + center.y * scale,
-      })
-    }
-  }
-
-  const handleMouseLeave = () => {
-    setHoveredStore(null)
-  }
+  const handleZoomIn = () => setScale(prev => Math.min(prev + 0.5, 4))
+  const handleZoomOut = () => setScale(prev => Math.max(prev - 0.5, 0.4))
 
   return (
-    <div className="text-gray-800 min-h-screen flex flex-col items-center py-8">
-      <h1 className="text-2xl font-bold mb-4">
-        Carte interactive de FashionCenter
-      </h1>
-
-      <div className="relative w-[full] max-w-[1000px]">
-        <Image
-          src={imageSrc}
-          alt="Fashion Center Map"
-          width={svgWidth}
-          height={svgHeight}
-          style={{ objectFit: 'cover' }}
-        />
-
-        <svg
-          ref={svgRef}
-          viewBox={`0 0 ${svgWidth} ${svgHeight}`}
-          className="absolute top-0 left-0"
-        >
-          {/* Stores */}
-          {stores.map((store) => (
-            <StorePolygon
-              key={store.id}
-              store={store}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              onClick={setSelectedStore}
-            />
-          ))}
-        </svg>
+    <div className="relative w-full h-screen bg-gray-900 overflow-hidden flex flex-col items-center justify-center">
+      {/* Controls */}
+      <div className="absolute top-4 left-4 z-40">
+        <FloorSwitcher />
       </div>
 
-      {/* Tooltip */}
-      {hoveredStore && (
-        <div
-          className="fixed bg-gray-800 text-white text-xs px-2 py-1 rounded-sm pointer-events-none"
-          style={{
-            top: tooltipPos.y,
-            left: tooltipPos.x,
-            transform: 'translate(-50%, -50%)',
-            zIndex: 20,
-          }}
+      <div className="absolute top-4 right-4 z-30 flex flex-col space-y-2">
+        <button
+          onClick={handleZoomIn}
+          className="p-3 bg-white/10 backdrop-blur-md text-white rounded-full hover:bg-white/20 transition-all border border-white/20"
         >
-          {hoveredStore.name}
+          <MdZoomIn className="w-6 h-6" />
+        </button>
+        <button
+          onClick={handleZoomOut}
+          className="p-3 bg-white/10 backdrop-blur-md text-white rounded-full hover:bg-white/20 transition-all border border-white/20"
+        >
+          <MdZoomOut className="w-6 h-6" />
+        </button>
+      </div>
+
+      <motion.div
+        ref={containerRef}
+        drag
+        dragConstraints={{ left: -svgWidth, right: svgWidth, top: -svgHeight, bottom: svgHeight }}
+        dragElastic={0.1}
+        animate={{ scale }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        className="cursor-move"
+      >
+        <div className="relative" style={{ width: svgWidth, height: svgHeight }}>
+          <Image
+            src={imageSrc}
+            alt="Fashion Center Map"
+            width={svgWidth}
+            height={svgHeight}
+            style={{ objectFit: 'contain' }}
+            draggable={false}
+          />
+
+          <svg
+            viewBox={`0 0 ${svgWidth} ${svgHeight}`}
+            className="absolute top-0 left-0 w-full h-full"
+          >
+            {/* Stores */}
+            {stores.map((store) => (
+              <StorePolygon
+                key={store.id}
+                store={store}
+                onMouseEnter={(s) => setHoveredStore(s)}
+                onMouseLeave={() => setHoveredStore(null)}
+                onClick={setSelectedStore}
+              />
+            ))}
+          </svg>
         </div>
+      </motion.div>
+
+      {/* Hover Tooltip - Floating fixed at bottom or following mouse (simplified to fixed for performance) */}
+      {hoveredStore && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-black/80 backdrop-blur-md text-white px-6 py-3 rounded-full border border-white/10 z-30 pointer-events-none"
+        >
+          <span className="font-bold text-lg">{hoveredStore.name}</span>
+        </motion.div>
       )}
 
       {selectedStore && (
@@ -115,7 +125,7 @@ const Map: React.FC<MapProps> = ({
         >
           {selectedStore.lot && (
             <div className="py-1">
-              <span className="font-bold">Lot</span> : {selectedStore.lot}
+              <span className="font-bold font-mono text-indigo-400">Lot</span> : {selectedStore.lot}
             </div>
           )}
           {selectedStore.tel && (
@@ -138,18 +148,17 @@ const Map: React.FC<MapProps> = ({
           )}
           {selectedStore.website && (
             <div className="py-1">
-              <span className="font-bold">Site web</span> :{' '}
+              <span className="font-bold font-mono text-indigo-400">Site web</span> :{' '}
               <Link
                 href={selectedStore.website}
-                className="text-indigo-500 underline"
+                className="text-indigo-400 underline hover:text-indigo-300"
               >
                 {selectedStore.website}
               </Link>
             </div>
           )}
           {selectedStore.description && (
-            <p className="py-1">
-              <span className="font-bold">Description</span> :{' '}
+            <p className="py-1 mt-2 text-gray-300">
               {selectedStore.description}
             </p>
           )}

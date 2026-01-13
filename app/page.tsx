@@ -7,7 +7,7 @@ import Footer from '@/app/components/Footer'
 
 export default function Home() {
   return (
-    <div className="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col pt-20">
       <NavBar />
       <HeroSection />
       <GallerySection />

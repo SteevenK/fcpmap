@@ -1,5 +1,6 @@
 import React, { MouseEvent } from 'react'
 import { StoreType } from '@/app/components/stores'
+import { motion } from 'framer-motion'
 
 interface StorePolygonProps {
   store: StoreType
@@ -15,20 +16,20 @@ const StorePolygon: React.FC<StorePolygonProps> = ({
   onClick,
 }) => {
   return (
-    <>
-      <polygon
-        points={store.points}
-        fill="rgba(255, 0, 0, 0.1)" // fond rouge semi-transparent
-        stroke="red"
-        strokeWidth={0.5}
-        style={{ cursor: 'pointer' }}
-        onMouseEnter={(e: MouseEvent<SVGPolygonElement>) =>
-          onMouseEnter(store, e)
-        }
-        onMouseLeave={onMouseLeave}
-        onClick={() => onClick(store)}
-      />
-    </>
+    <motion.polygon
+      points={store.points}
+      initial={{ fill: "rgba(99, 102, 241, 0.1)", stroke: "rgba(99, 102, 241, 0.3)", strokeWidth: 1 }}
+      whileHover={{
+        fill: "rgba(99, 102, 241, 0.4)",
+        stroke: "rgba(99, 102, 241, 0.8)",
+        strokeWidth: 2
+      }}
+      transition={{ duration: 0.2 }}
+      style={{ cursor: 'pointer' }}
+      onMouseEnter={(e: any) => onMouseEnter(store, e)}
+      onMouseLeave={onMouseLeave}
+      onClick={() => onClick(store)}
+    />
   )
 }
 
